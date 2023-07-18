@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <script src="jquery-3.3.1.min.js"></script>
+  <script src="jquery-ui.js"></script>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <link rel="stylesheet" href="jquery-ui.structure.css">
+  <link rel="stylesheet" href="jquery-ui.theme.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Stop The Metro: Contact Us</title>
+
+  <style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	/* background-color: #4E5869; */
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+ul, ol, dl { 
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 
+	padding-right: 15px;
+	padding-left: 15px; 
+}
+a img { 
+	border: none;
+}
+
+a:link {
+	color: #000;
+	text-decoration: underline; 
+	font-weight: 900;
+}
+a:visited {
+	color: #000;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { 
+	text-decoration: none;
+}
+
+.container {
+	width: 1300px;
+	background-color: #FFF;
+	margin: 0 auto; 
+}
+
+.header {
+	background-color: #6F7D94;
+}
+
+.sidebar1 {
+	float: left;
+	width: 310px;
+	background-color: #93A5C4;
+	padding-bottom: 10px;
+}
+.content {
+
+	padding: 10px 0;
+	width: 990px;
+	float: left;
+	text-align: justify;
+}
+
+.content ul, .content ol { 
+	padding: 0 15px 15px 40px; 
+}
+
+ul.nav {
+	list-style: none; 
+	border-top: 1px solid #666; 
+	margin-bottom: 15px; 
+}
+ul.nav li {
+	border-bottom: 1px solid #666; 
+}
+ul.nav a, ul.nav a:visited  { 
+	padding: 5px 5px 5px 15px;
+	display: block; 
+	width: 290px;  
+	text-decoration: none;
+	background-color: #8090AB;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
+	background-color: #6F7D94;
+	color: #FFF;
+}
+
+
+.footer {
+	padding: 10px 0;
+	background-color: #6F7D94;
+	position: relative;
+	clear: both; 
+	text-align:center;
+}
+
+
+.fltrt {  
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+-->
+</style>
+</head>
+
+<body>
+<div style="text-align: center;">
+<br>
+<!-- 
+<img src="news_icon.png">
+ -->
+<br>
+<div style="text-align: center;"> <big style="font-weight: bold;"> <h1> <img src="announcementsLeft.gif"> &nbsp; CONTACT STOP THE METRO &nbsp; <img src="announcements.gif"></h1> </big>
+Please fill out the form below and click <b>[Submit...] </b>Fields denoted by <font color="red"><b>*</b></font> are required.<br><br>
+
+<!-- 
+  <form action="http://ns-mailform.com" id="stm_mailform">
+ -->
+ <div id="Contact" class="Section">
+
+  <div id="dialog" title="Prove You are Human"></div>
+
+	 <table class="center" id="emailtable" width="30%" border="0" cellpadding="2" cellspacing="5">
+
+	<tr>
+	<td><b>Name:<font color="red"><b>*</b></font></td>
+	</tr>
+	<tr>
+	<td>
+	<input name="name_field" type="text" id="name_field" size="65" maxlength="650" />
+	</tr>
+	<tr>
+	<td><b>Email:<font color="red"><b>*</b></font></b></td>
+	</tr>
+	<tr>
+	<td><input name="email_field" type="text" id="email_field" size="65" maxlength="650" /></td>
+	</tr>
+	<td><b>Message:<font color="red"><b>*</b></font></b></td>
+	</tr>
+	<tr>
+	<td>
+	<label for="message_area"></label>
+	<textarea name="message_area" id="message_area" cols="70" rows="10"></textarea>
+	</td>
+	</tr>
+
+	<tr>
+	<!-- <td><input type="reset" name="Reset" id="Reset" value="Reset" /> -->
+	<!-- <input type="submit" name="submit" id="submit" value="Submit" /></td> -->
+	<td><button id="btnSubmit">  Submit </button></td>
+
+	</tr>
+
+	</table>
+	
+</div>
+
+<script>
+
+
+$(document).ready(function(){
+  $("#btnSubmit").click(function(){
+  
+  	 if(!validateForm($("#name_field").val(), $("#email_field").val(), $("#message_area").val()) ){
+  	 	return;
+  	 }
+
+    var multi1 = Math.round(Math.random() * 10);
+    var multi2 = Math.round(Math.random() * 10);
+
+    var $dialog =  $( "#dialog" ).dialog({
+        modal: true,
+        resizable: false,
+        minWidth: 400,
+        dialogClass: "no-close",
+        position: {
+            my: "center",
+            at: "center",
+            of: $('#emailtable')
+        },
+        buttons: [
+          {
+            text: "Send",
+            click: function() {
+              let retVal = $("#textInput").val();
+              let boolRetVal = parseInt(retVal) == (multi1+multi2);
+              if(boolRetVal){
+                doPost($("#name_field").val(), $("#email_field").val(), $("#message_area").val(), createExpression(multi1, multi2, retVal));
+              }
+              else {
+                //alert("Incorrect answer, please try again, or email: `"+atob("aW5mb0BiaW5ib3RmeC5pbmZv")+"'");
+                alert("Incorrect answer, please try again");
+              }
+              $( this ).dialog( "close" );
+            }
+          }
+        ]
+      });
+      $dialog.html("<p> If you are not a <b><i>robot</i></b>, answer what is the sum: </p>" +
+        "<input placeholder = \""+multi1+" + "+multi2+" = \"  id=\"textInput\" size=30 type=\"text\"/>"
+      );
+
+  });
+});
+
+function validateForm(name, email, message) {
+  if (name == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (message == "") {
+    alert("Message must be filled out");
+    return false;
+  }
+  return true;
+}
+
+function doPost(name, email, message, expr){
+  console.log(name + "\n"+email + "\n"+message+"\n"+expr);
+  $.post("http://ns-mailapps.appspot.com/STMInquiry",
+  {
+    name_field: name,
+    email_field: email,
+    message_area: message,
+    expression: expr
+  },
+  function(data){
+    var newDoc = document.open("text/html", "replace");
+    newDoc.write(data);
+    newDoc.close();
+  });
+}
+
+function createExpression(first, second, result){
+  return ""+first+"+"+second+"="+result;
+}
+
+function popUp(){
+  var frog = window.open("","wildebeast","width=714,height=439,top=150,left=350,location=1,status=1,scrollbars=1,resizable=1")
+  var text = "<b>BINBOTFX SOFTWARE LICENSE AGREEMENT (SLA)</b><br><br>PLEASE READ THE FOLLOWING BEFORE USING THIS SOFTWARE. IF YOU DON'T AGREE WITH IT IN ANY WAY PLEASE DESTROY ALL YOUR COPIES OF THIS SOFTWARE.<br><br>This software is provided \"AS IS\". BINBOTFX SOFTWARE DEVELOPERS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, OR PERHAPS MISUSE OF THE SOFTWARE. IN NO EVENT SHALL BINBOTFX SOFTWARE DEVELOPERS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF BINBOTFX SOFTWARE DEVELOPERS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.<br><br>This is a Not For Resale Software. If the SOFTWARE PRODUCT is labeled \"Not For Resale\" or \"NFR\", then you may not resell, or otherwise transfer for value, the SOFTWARE PRODUCT.<br><br>You may not reverse engineer, decompile, or disassemble the SOFTWARE PRODUCT.<br><br>You may not rent, lease, or lend the SOFTWARE PRODUCT";
+
+  var html = "<html><head><"+"/head><body>"+ text +"."+"<"+"/body><"+"/html>";
+  frog.document.open();
+  frog.document.write(html);
+  frog.document.close();
+}
+
+
+function openEtherBuyWin() {
+  var myWindow = window.open("payEther.html", "", "width=750, height=850,top=150,left=350,location=1,status=1,scrollbars=1,resizable=1");
+  myWindow.focus();
+}
+
+function openBtcBuyWin() {
+  var myWindow = window.open("payBitcoin.html", "", "width=750, height=850,top=150,left=350,location=1,status=1,scrollbars=1,resizable=1");
+  myWindow.focus();
+}
+
+function openPPBuyWin() {
+  var myWindow = window.open("https://ns-apps.appspot.com/NS_Webstore_Jump", "", "width=750, height=850,top=150,left=350,location=1,status=1,scrollbars=1,resizable=1");
+  myWindow.focus();
+}
+
+</script>			
+			
+</div>
+</div>
+
+</body>
+
+</html>
